@@ -7,9 +7,10 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+
 import { addUser } from "../utils/userSlice";
 import { useDispatch } from "react-redux";
+import { BACKGROUND_IMAGE, USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,8 +20,6 @@ const Login = () => {
 
   let [isSignInForm, setIsSignInForm] = useState(true);
   let [errorMessage, setErrorMessage] = useState(null);
-
-  const navigate = useNavigate();
 
   let toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -43,15 +42,13 @@ const Login = () => {
       )
         .then((userCredential) => {
           // User Signed up
-          const user = userCredential.user;
           updateProfile(auth.currentUser, {
             displayName: name.current.value,
-            photoURL: "https://cdn-icons-png.flaticon.com/512/4140/4140037.png",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(addUser({ uid, email, displayName, photoURL }));
-              navigate("/browse");
             })
             .catch((error) => {
               setErrorMessage(error.message);
@@ -66,6 +63,7 @@ const Login = () => {
           // ..
         });
     }
+
     // LOGIN PAGE
     else {
       // Sign In Logic
@@ -77,7 +75,6 @@ const Login = () => {
         .then((userCredential) => {
           // User Signed in
           const user = userCredential.user;
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -94,12 +91,12 @@ const Login = () => {
       <Header />
       <div className="relative">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/0cf2c109-3af1-4a9d-87d7-aecfac5fe881/web/IN-en-20250217-TRIFECTA-perspective_c3376e06-9aff-4657-aafb-91256a597b7c_large.jpg"
-          className=" "
+          src={BACKGROUND_IMAGE}
+          className="h-screen w-screen min-w-[250px]"
         ></img>
         <form
           onSubmit={(e) => e.preventDefault()}
-          className=" absolute w-4/12 p-12  opacity-84 bg-black text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-sm  "
+          className=" absolute w-4/12 p-12  opacity-84 bg-black text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-sm max-h-full "
         >
           <h1 className=" font-bold text-2xl pb-4 mb-3 ">
             {isSignInForm ? "Sign In" : "Sign Up"}
