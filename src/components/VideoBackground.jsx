@@ -1,11 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieTrailerData } from "../utils/getMovieTrailer";
-import { addTrailerVideo, setIsPlaying } from "../utils/moviesSlice";
-import useMainMovieVideo from "../hooks/useMovieTrailer";
+import { setIsPlaying } from "../utils/moviesSlice";
+import useTrailerVideoInfo from "../hooks/useTrailerVideoInfo";
 
 const VideoBackground = ({}) => {
-  useMainMovieVideo();
+  useTrailerVideoInfo();
   const fullScreenFrame = useRef(null);
   const isPlaying = useSelector((state) => state.movies?.isPlaying);
   const trailerVideo = useSelector((state) => state.movies?.trailerVideo);
@@ -75,7 +74,7 @@ const VideoBackground = ({}) => {
             <iframe
               allowFullScreen
               className=" fixed top-0 left-0 w-full h-full z-50   "
-              src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&controls=1&fs=0`}
+              src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&controls=1&rel=0&modestbranding=1&loop=1&playlist=${trailerVideo?.key}`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share"
             ></iframe>
@@ -85,9 +84,9 @@ const VideoBackground = ({}) => {
                   document.exitFullscreen();
                 }
               }}
-              className=" z-[10000001] absolute bottom-4 right-4 bg-black/60 text-white px-4 py-2 rounded"
+              className=" z-[10000001] absolute bottom-0 right-0 bg-black border-[1px] border-gray-500 text-white  py-2 pr-3 pl-4 "
             >
-              Exit Fullscreen
+              Exit
             </button>
           </>
         ) : (

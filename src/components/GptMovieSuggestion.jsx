@@ -15,7 +15,7 @@ const GptMovieSuggestion = () => {
           ));
         else
           return movies
-            .filter((movie) => movie.title == aiMovieNames[index])
+            .filter((movie) => movie.original_title == aiMovieNames[index])
             .map((movie) => <MovieCard key={movie.id} movie={movie} />);
       })}
     </div>

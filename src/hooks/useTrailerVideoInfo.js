@@ -3,7 +3,7 @@ import { API_OPTIONS } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
 
-const useMainMovieVideo = () => {
+const useTrailerVideoInfo = () => {
   const movieId = useSelector((state) => state.movies?.mainMovie?.id);
   if (!movieId) return;
   const dispatch = useDispatch();
@@ -27,4 +27,4 @@ const useMainMovieVideo = () => {
   }, [movieId]);
 };
 
-export default useMainMovieVideo;
+export default useTrailerVideoInfo;

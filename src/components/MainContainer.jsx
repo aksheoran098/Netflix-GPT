@@ -7,12 +7,10 @@ const MainContainer = () => {
   const mainMovie = useSelector((state) => state.movies?.mainMovie);
   if (!mainMovie) return;
 
-  const { original_title, overview, id } = mainMovie;
-
   return (
     <div>
-      <VideoTitle title={original_title} overview={overview} />
-      <VideoBackground movieId={id} />
+      <VideoTitle mainMovie={mainMovie} />
+      <VideoBackground />
     </div>
   );
 };

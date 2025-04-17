@@ -6,7 +6,6 @@ import SecondaryContainer from "./SecondaryContainer";
 import usePopularMovies from "../hooks/usePopularMovies";
 import GptSearch from "./GptSearch";
 import { useSelector } from "react-redux";
-import useMainMovieVideo from "../hooks/useMovieTrailer";
 
 const Browse = () => {
   useNowPlayingMovies();
