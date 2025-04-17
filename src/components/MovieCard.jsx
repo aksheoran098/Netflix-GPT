@@ -1,14 +1,37 @@
 import React from "react";
 import { IMG_CDN_URL } from "../utils/constants";
+import { getMovieTrailerData } from "../utils/getMovieTrailer";
+import { useDispatch, useSelector } from "react-redux";
+import { addMainMovie, addTrailerVideo } from "../utils/moviesSlice";
+import { toggleGptSearchView } from "../utils/gptSlice";
 
-const MovieCard = ({ posterPath }) => {
+const MovieCard = ({ movie }) => {
+  if (!movie.poster_path) return;
+
+  const dispatch = useDispatch();
+  const showGptSearch = useSelector((state) => state.gpt.showGptSearch);
+
+  const clickHandler = async () => {
+    // const data = await getMovieTrailerData(movie.id);
+
+    dispatch(addMainMovie(movie));
+
+    if (showGptSearch) {
+      dispatch(toggleGptSearchView());
+    }
+  };
+
   return (
-    <div className=" min-w-36 md:min-w-48 mx-2 flex h-[250px] border-zinc-400 border-[2px] rounded-xl overflow-hidden">
+    <div
+      className=" text-white min-w-48  mx-2 mb-4 border-zinc-400 cursor-pointer  overflow-hidden "
+      onClick={clickHandler}
+    >
       <img
-        src={IMG_CDN_URL + posterPath}
+        src={IMG_CDN_URL + movie.poster_path}
         alt="Movie Card"
-        className="object-cover w-full h-full"
+        className="object-cover w-full md:h-[250px] border-[1px] rounded-xl"
       />
+      <p className="  truncate ">{movie.title}</p>
     </div>
   );
 };
