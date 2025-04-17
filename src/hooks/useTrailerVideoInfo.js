@@ -17,7 +17,6 @@ const useTrailerVideoInfo = () => {
     if (!trailer) {
       trailer = { key: "O0pLvZwZKkI" };
     }
-    console.log(trailer);
 
     dispatch(addTrailerVideo(trailer));
   };

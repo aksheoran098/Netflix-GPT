@@ -17,8 +17,6 @@ const moviesSlice = createSlice({
       state.trailerVideo = action.payload;
     },
     setIsPlaying: (state, action) => {
-      console.log("its true");
-
       state.isPlaying = action.payload;
     },
   },
