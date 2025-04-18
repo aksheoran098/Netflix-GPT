@@ -68,7 +68,7 @@ const VideoBackground = ({}) => {
 
   return (
     trailerVideo && (
-      <div ref={fullScreenFrame}>
+      <div ref={fullScreenFrame} className="">
         {isPlaying ? (
           <>
             <iframe

@@ -13,6 +13,8 @@ const useTrailerVideoInfo = () => {
     const data = await fetch(url, API_OPTIONS);
     const json = await data.json();
     const filterData = json.results.filter((video) => video.type === "Trailer");
+    console.log(json.results);
+
     let trailer = filterData.length ? filterData[0] : json.results[0];
     if (!trailer) {
       trailer = { key: "O0pLvZwZKkI" };

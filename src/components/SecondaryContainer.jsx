@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useMemo } from "react";
 import MovieList from "./MovieList";
 import { useSelector } from "react-redux";
 
 const SecondaryContainer = () => {
   const nowPlayingMovies = useSelector(
-    (store) => store.movies.nowPlayingMovies
+    (store) => store.movies?.nowPlayingMovies
   );
-  const popularMovies = useSelector((store) => store.movies.popularMovies);
+  const popularMovies = useSelector((store) => store.movies?.popularMovies);
+  const topRatedMovies = useSelector((store) => store.movies?.topRatedMovies);
+  const upcomingMovies = useSelector((store) => store.movies?.upcomingMovies);
+  // Memoize reversed popularMovies to avoid recomputation unless the array changes
+
   return (
     <div className="  bg-black ">
-      <div className="relative -mt-[10%]">
+      <div className="relative -mt-[15%]">
         <MovieList title="Now Playing" movies={nowPlayingMovies} />
-        <MovieList title="Trending" movies={popularMovies} />
-        <MovieList title="Popular" movies={nowPlayingMovies} />
-        <MovieList title="Upcoming Movies" movies={nowPlayingMovies} />
-        <MovieList title="Horror" movies={nowPlayingMovies} />
+        <MovieList title="Popular Hindi" movies={popularMovies} />
+        <MovieList title="Upcoming Movies" movies={upcomingMovies} />
+        <MovieList title="Top Rated" movies={topRatedMovies} />
       </div>
     </div>
   );

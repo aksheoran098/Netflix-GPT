@@ -19,6 +19,10 @@ const MovieCard = ({ movie }) => {
     if (showGptSearch) {
       dispatch(toggleGptSearchView());
     }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scroll effect
+    });
   };
 
   return (
