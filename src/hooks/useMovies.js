@@ -3,6 +3,7 @@ import {
   addMainMovie,
   addNowPlayingMovies,
   addPopularMovies,
+  addRomComHindiMovies,
   addTopRatedMovies,
   addUpcomingMovies,
 } from "../utils/moviesSlice";
@@ -42,12 +43,20 @@ const useMovies = () => {
     const json = await data.json();
     dispatch(addUpcomingMovies(json.results));
   };
+  const getRomcomMovies = async () => {
+    const url =
+      "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=true&page=1&sort_by=vote_count.desc&with_genres=10749%2C35&with_original_language=hi";
+    const data = await fetch(url, API_OPTIONS);
+    const json = await data.json();
+    dispatch(addRomComHindiMovies(json.results));
+  };
 
   useEffect(() => {
     getNowPlayingMovies();
     getPopularMovies();
     getTopRatedMovies();
     getUpcomingMovies();
+    getRomcomMovies();
   }, []);
 };
 

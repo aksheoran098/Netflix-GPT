@@ -38,7 +38,7 @@ const MovieCard = ({ movie }) => {
       {inView && (
         <img
           src={IMG_CDN_URL + movie.poster_path}
-          alt="Movie Card"
+          alt="Movie Card *Can't load Image* TMDB Free trial Rate Limit Exceeded"
           className="object-cover w-full md:h-[250px] border-[1px] rounded-xl"
         />
       )}

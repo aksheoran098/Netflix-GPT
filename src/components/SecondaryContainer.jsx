@@ -9,6 +9,9 @@ const SecondaryContainer = () => {
   const popularMovies = useSelector((store) => store.movies?.popularMovies);
   const topRatedMovies = useSelector((store) => store.movies?.topRatedMovies);
   const upcomingMovies = useSelector((store) => store.movies?.upcomingMovies);
+  const romComHindiMovies = useSelector(
+    (store) => store.movies?.romComHindiMovies
+  );
   // Memoize reversed popularMovies to avoid recomputation unless the array changes
 
   return (
@@ -17,6 +20,8 @@ const SecondaryContainer = () => {
         <MovieList title="Now Playing" movies={nowPlayingMovies} />
         <MovieList title="Popular Hindi" movies={popularMovies} />
         <MovieList title="Upcoming Movies" movies={upcomingMovies} />
+        <MovieList title="RomCom Hindi" movies={romComHindiMovies} />
+
         <MovieList title="Top Rated" movies={topRatedMovies} />
       </div>
     </div>

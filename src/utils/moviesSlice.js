@@ -22,6 +22,9 @@ const moviesSlice = createSlice({
     addUpcomingMovies: (state, action) => {
       state.upcomingMovies = action.payload;
     },
+    addRomComHindiMovies: (state, action) => {
+      state.romComHindiMovies = action.payload;
+    },
 
     setIsPlaying: (state, action) => {
       state.isPlaying = action.payload;
@@ -37,6 +40,7 @@ export const {
   addUpcomingMovies,
   addMainMovie,
   setIsPlaying,
+  addRomComHindiMovies,
 } = moviesSlice.actions;
 const moviesReducer = moviesSlice.reducer;
 export default moviesReducer;
