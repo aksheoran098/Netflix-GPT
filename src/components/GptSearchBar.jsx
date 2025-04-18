@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import geminiSearch from "../utils/gemini";
 import { API_OPTIONS } from "../utils/constants";
 import { useDispatch } from "react-redux";
-import { addAiMovieResults } from "../utils/gptSlice";
+import { addAiMovieResults, setIsGptLoading } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,7 @@ const GptSearchBar = () => {
 
   const handleGptSearchClick = async (e) => {
     e.preventDefault();
+    dispatch(setIsGptLoading(true));
 
     const aiMovieNames = await geminiSearch(searchText.current.value);
 

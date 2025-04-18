@@ -84,7 +84,7 @@ const VideoBackground = ({}) => {
                   document.exitFullscreen();
                 }
               }}
-              className=" z-[10000001] absolute bottom-0 right-0 bg-black border-[1px] border-gray-500 text-white  py-2 pr-3 pl-4 "
+              className=" z-[10000001] absolute bottom-0 right-0 bg-black border-[1px] border-gray-500 text-white  py-2 pr-3 pl-4 cursor-pointer "
             >
               Exit
             </button>
