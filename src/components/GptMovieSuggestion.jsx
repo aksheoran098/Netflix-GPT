@@ -5,7 +5,6 @@ import { HashLoader } from "react-spinners";
 
 const GptMovieSuggestion = () => {
   const isLoading = useSelector((state) => state.gpt.isGptLoading);
-
   const aiMovieNames = useSelector((state) => state.gpt?.aiMovieNames);
   const aiMovieResults = useSelector((state) => state.gpt?.aiMovieResults);
   if (!aiMovieNames && !isLoading) return;
@@ -23,7 +22,7 @@ const GptMovieSuggestion = () => {
             ));
           } else {
             return movies
-              .filter((movie) => movie.original_title == aiMovieNames[index])
+              .filter((movie) => movie.title == aiMovieNames[index])
               .map((movie) => <MovieCard key={movie.id} movie={movie} />);
           }
         })

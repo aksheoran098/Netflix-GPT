@@ -20,7 +20,10 @@ const GptSearchBar = () => {
     e.preventDefault();
     dispatch(setIsGptLoading(true));
 
-    const aiMovieNames = await geminiSearch(searchText.current.value);
+    const aiMovieNames = await geminiSearch(
+      "movie_names",
+      searchText.current.value
+    );
 
     const aiMovieResults = await Promise.all(aiMovieNames.map(searchMovieTMDB));
 

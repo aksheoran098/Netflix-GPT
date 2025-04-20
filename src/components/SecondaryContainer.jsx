@@ -3,6 +3,8 @@ import MovieList from "./MovieList";
 import { useSelector } from "react-redux";
 
 const SecondaryContainer = () => {
+  console.log("secondary loaded");
+
   const nowPlayingMovies = useSelector(
     (store) => store.movies?.nowPlayingMovies
   );

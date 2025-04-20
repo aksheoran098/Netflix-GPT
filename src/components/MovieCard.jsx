@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addMainMovie, addTrailerVideo } from "../utils/moviesSlice";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { useInView } from "react-intersection-observer";
+import setTrailer from "../hooks/setTrailer";
 
 const MovieCard = ({ movie }) => {
   if (!movie.poster_path) return;
@@ -20,6 +21,9 @@ const MovieCard = ({ movie }) => {
   const clickHandler = async () => {
     dispatch(addMainMovie(movie));
 
+    const trailer = await setTrailer(movie.id);
+    dispatch(addTrailerVideo(trailer));
+
     if (showGptSearch) {
       dispatch(toggleGptSearchView());
     }
@@ -31,7 +35,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <div
-      className=" text-white min-w-48  mx-2 mb-4 border-zinc-400 cursor-pointer  overflow-hidden "
+      className=" text-white min-w-40  mx-2 mb-4 border-zinc-400 cursor-pointer  overflow-hidden "
       onClick={clickHandler}
       ref={ref}
     >
@@ -39,7 +43,7 @@ const MovieCard = ({ movie }) => {
         <img
           src={IMG_CDN_URL + movie.poster_path}
           alt="Movie Card *Can't load Image* TMDB Free trial Rate Limit Exceeded"
-          className="object-cover w-full md:h-[250px] border-[1px] rounded-xl"
+          className="object-cover w-full h-[85%]  rounded-lg"
         />
       )}
       <p className="  truncate ">{movie.title}</p>

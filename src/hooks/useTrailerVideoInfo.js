@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addTrailerVideo } from "../utils/moviesSlice";
 
 const useTrailerVideoInfo = () => {
-  const movieId = useSelector((state) => state.movies?.mainMovie?.id);
-  if (!movieId) return;
+  // const mainMovie = useSelector((state) => state.movies?.mainMovie);
   const dispatch = useDispatch();
+
+  const movieId = mainMovie?.id;
 
   const getMovieVideos = async () => {
     const url = `https://api.themoviedb.org/3/movie/${movieId}/videos`;
@@ -23,7 +24,7 @@ const useTrailerVideoInfo = () => {
   };
 
   useEffect(() => {
-    getMovieVideos();
+    if (movieId) getMovieVideos();
   }, [movieId]);
 };
 

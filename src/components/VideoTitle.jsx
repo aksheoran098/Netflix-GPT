@@ -1,25 +1,34 @@
 import React, { useState } from "react";
 import { setIsPlaying } from "../utils/moviesSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MoreInfo from "./MoreInfo";
 
-const VideoTitle = ({ mainMovie }) => {
-  const dispatch = useDispatch();
+const VideoTitle = () => {
+  console.log("video title");
   const [showMore, setShowMore] = useState(false);
+  const dispatch = useDispatch();
+
+  const mainMovie = useSelector((state) => state.movies?.mainMovie);
+  if (!mainMovie) {
+    console.log("mainMovie is null so returning");
+
+    return;
+  }
+  console.log("mainMovie is here");
 
   return (
     <div className=" absolute w-full aspect-video flex ">
       <div className="h-[100%] w-[50%] pt-[15%]  pl-10 bg-gradient-to-r  from-black  text-white ">
-        <h1 className="font-bold text-5xl">{mainMovie.title}</h1>
+        <h1 className="font-bold text-5xl">{mainMovie?.title}</h1>
         <p className="text-sm text-gray-400">
-          {mainMovie.release_date} | ⭐ {mainMovie.vote_average.toFixed(1)}
+          {mainMovie?.release_date} | ⭐ {mainMovie?.vote_average.toFixed(1)}
         </p>
         <p
           className={`w-[70%] py-4  max-h-[45%] overflow-hidden ${
             showMore ? "text-gray-200" : "text-gray-500"
           } `}
         >
-          {mainMovie.overview}
+          {mainMovie?.overview}
         </p>
         <div>
           <button

@@ -4,12 +4,11 @@ import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 
 const MainContainer = () => {
-  const mainMovie = useSelector((state) => state.movies?.mainMovie);
-  if (!mainMovie) return;
+  console.log("main container");
 
   return (
     <div>
-      <VideoTitle mainMovie={mainMovie} />
+      <VideoTitle />
       <VideoBackground />
     </div>
   );

@@ -5,12 +5,16 @@ import {
   addPopularMovies,
   addRomComHindiMovies,
   addTopRatedMovies,
+  addTrailerVideo,
   addUpcomingMovies,
 } from "../utils/moviesSlice";
 import { API_OPTIONS } from "../utils/constants";
 import { useEffect } from "react";
+import setTrailer from "./setTrailer";
 
 const useMovies = () => {
+  console.log("useMovies-----------------------");
+
   const dispatch = useDispatch();
 
   const getNowPlayingMovies = async () => {
@@ -18,6 +22,8 @@ const useMovies = () => {
     const data = await fetch(url, API_OPTIONS);
     const json = await data.json();
     dispatch(addMainMovie(json.results[0]));
+    const trailer = await setTrailer(json.results[0].id);
+    dispatch(addTrailerVideo(trailer));
     dispatch(addNowPlayingMovies(json.results));
   };
 
