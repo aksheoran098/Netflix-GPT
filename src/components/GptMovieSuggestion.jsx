@@ -4,6 +4,8 @@ import MovieCard from "./MovieCard";
 import { HashLoader } from "react-spinners";
 
 const GptMovieSuggestion = () => {
+  console.log("Gpt Movies List");
+
   const isLoading = useSelector((state) => state.gpt.isGptLoading);
   const aiMovieNames = useSelector((state) => state.gpt?.aiMovieNames);
   const aiMovieResults = useSelector((state) => state.gpt?.aiMovieResults);
@@ -16,7 +18,7 @@ const GptMovieSuggestion = () => {
         </div>
       ) : (
         aiMovieResults.flatMap((movies, index) => {
-          if (movies.length <= 3) {
+          if (movies.length <= 5) {
             return movies.map((movie) => (
               <MovieCard key={movie.id} movie={movie} />
             ));

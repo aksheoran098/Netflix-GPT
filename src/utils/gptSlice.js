@@ -7,9 +7,12 @@ const gptSlice = createSlice({
     aiMovieNames: null,
     aiMovieResults: null,
     isGptLoading: false,
+    gptSearchText: "",
   },
   reducers: {
     toggleGptSearchView: (state, action) => {
+      console.log("toogleGPTview updated ---------- State");
+
       state.showGptSearch = !state.showGptSearch;
     },
     addAiMovieResults: (state, action) => {
@@ -20,11 +23,18 @@ const gptSlice = createSlice({
     setIsGptLoading: (state, action) => {
       state.isGptLoading = action.payload;
     },
+    setGptSearchText: (state, action) => {
+      state.gptSearchText = action.payload;
+    },
   },
 });
 
-export const { toggleGptSearchView, addAiMovieResults, setIsGptLoading } =
-  gptSlice.actions;
+export const {
+  toggleGptSearchView,
+  addAiMovieResults,
+  setIsGptLoading,
+  setGptSearchText,
+} = gptSlice.actions;
 
 const gptSliceReduce = gptSlice.reducer;
 export default gptSliceReduce;

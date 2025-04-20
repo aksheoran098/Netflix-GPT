@@ -1,12 +1,19 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import geminiSearch from "../utils/gemini";
 import { API_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
-import { addAiMovieResults, setIsGptLoading } from "../utils/gptSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addAiMovieResults,
+  setGptSearchText,
+  setIsGptLoading,
+} from "../utils/gptSlice";
 
 const GptSearchBar = () => {
+  console.log("Gpt Search Bar loaded");
+
   const dispatch = useDispatch();
-  const searchText = useRef(null);
+  const gptSearchText = useSelector((state) => state.gpt.gptSearchText);
+  const [searchText, setSearchText] = useState(gptSearchText);
 
   const searchMovieTMDB = async (movie) => {
     const url = `https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&page=1`;
@@ -18,12 +25,11 @@ const GptSearchBar = () => {
 
   const handleGptSearchClick = async (e) => {
     e.preventDefault();
+
+    dispatch(setGptSearchText(searchText));
     dispatch(setIsGptLoading(true));
 
-    const aiMovieNames = await geminiSearch(
-      "movie_names",
-      searchText.current.value
-    );
+    const aiMovieNames = await geminiSearch(searchText);
 
     const aiMovieResults = await Promise.all(aiMovieNames.map(searchMovieTMDB));
 
@@ -41,7 +47,8 @@ const GptSearchBar = () => {
           type="text"
           placeholder="What would you like to watch today?"
           className=" col-span-9 m-3 p-2 bg-white text-black"
-          ref={searchText}
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
         />
 
         <button className="  col-span-3 bg-red-700 m-3 ml-0 rounded-lg  cursor-pointer">

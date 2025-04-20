@@ -5,11 +5,13 @@ const moviesSlice = createSlice({
   initialState: { nowPlayingMovies: null, mainMovie: null },
   reducers: {
     addMainMovie: (state, action) => {
-      console.log("mainMovie added in store");
+      console.log("mainMovie added in ----------- Store");
 
       state.mainMovie = action.payload;
     },
     addTrailerVideo: (state, action) => {
+      console.log("Trailer state updated ------------Store ");
+
       state.trailerVideo = action.payload;
     },
     addNowPlayingMovies: (state, action) => {

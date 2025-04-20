@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsPlaying } from "../utils/moviesSlice";
 
 const VideoBackground = ({}) => {
-  console.log("video background -> calling use trailer");
+  console.log("video background ");
 
   const fullScreenFrame = useRef(null);
   const isPlaying = useSelector((state) => state.movies?.isPlaying);

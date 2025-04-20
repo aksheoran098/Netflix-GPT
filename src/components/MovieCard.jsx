@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IMG_CDN_URL } from "../utils/constants";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,21 +8,29 @@ import { useInView } from "react-intersection-observer";
 import setTrailer from "../hooks/setTrailer";
 
 const MovieCard = ({ movie }) => {
-  if (!movie.poster_path) return;
-
+  const [myTrailer, setMyTrailer] = useState(null);
   const dispatch = useDispatch();
   const showGptSearch = useSelector((state) => state.gpt.showGptSearch);
-
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.01,
   });
 
+  if (!movie.poster_path) return;
+
+  useEffect(() => {
+    const checkTrailer = async () => {
+      const trailer = await setTrailer(movie.id);
+      setMyTrailer(trailer);
+    };
+
+    checkTrailer();
+  }, []);
+
   const clickHandler = async () => {
     dispatch(addMainMovie(movie));
 
-    const trailer = await setTrailer(movie.id);
-    dispatch(addTrailerVideo(trailer));
+    dispatch(addTrailerVideo(myTrailer));
 
     if (showGptSearch) {
       dispatch(toggleGptSearchView());
@@ -33,9 +41,12 @@ const MovieCard = ({ movie }) => {
     });
   };
 
+  if (!myTrailer || myTrailer.key == "O0pLvZwZKkI") {
+    return;
+  }
   return (
     <div
-      className=" text-white min-w-40  mx-2 mb-4 border-zinc-400 cursor-pointer  overflow-hidden "
+      className="  text-white min-w-40  mx-2 mb-4 border-zinc-400 cursor-pointer  overflow-hidden "
       onClick={clickHandler}
       ref={ref}
     >

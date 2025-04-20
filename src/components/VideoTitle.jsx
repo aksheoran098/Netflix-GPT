@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import MoreInfo from "./MoreInfo";
 
 const VideoTitle = () => {
-  console.log("video title");
   const [showMore, setShowMore] = useState(false);
   const dispatch = useDispatch();
 
@@ -14,7 +13,6 @@ const VideoTitle = () => {
 
     return;
   }
-  console.log("mainMovie is here");
 
   return (
     <div className=" absolute w-full aspect-video flex ">

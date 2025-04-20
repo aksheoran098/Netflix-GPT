@@ -15,14 +15,8 @@ Even if the actor or genre does not match well, still return an array like this:
 
 Only return a raw array of only movie names. Do not give movie year in movie name. Do not explain or say anything else.`;
 
-const myLinkQuery1 = ``;
-const myLinkQuery2 = ``;
-
-const geminiSearch = async (type, mainQuery) => {
-  const content =
-    type === "movie_names"
-      ? myMovieQuery1 + mainQuery + myMovieQuery2
-      : myLinkQuery1 + mainQuery + myLinkQuery2;
+const geminiSearch = async (mainQuery) => {
+  const content = myMovieQuery1 + mainQuery + myMovieQuery2;
 
   try {
     // First try with gemini-1.5-pro
