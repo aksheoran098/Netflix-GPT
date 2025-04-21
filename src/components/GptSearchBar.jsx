@@ -9,8 +9,6 @@ import {
 } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
-  console.log("Gpt Search Bar loaded");
-
   const dispatch = useDispatch();
   const gptSearchText = useSelector((state) => state.gpt.gptSearchText);
   const [searchText, setSearchText] = useState(gptSearchText);

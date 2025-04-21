@@ -7,8 +7,6 @@ import GptSearch from "./GptSearch";
 import { useSelector } from "react-redux";
 
 const Browse = () => {
-  console.log("browser loaded---------------");
-
   const showGptSearch = useSelector((state) => state.gpt.showGptSearch);
 
   useMovies();

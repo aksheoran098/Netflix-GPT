@@ -9,8 +9,6 @@ const VideoTitle = () => {
 
   const mainMovie = useSelector((state) => state.movies?.mainMovie);
   if (!mainMovie) {
-    console.log("mainMovie is null so returning");
-
     return;
   }
 

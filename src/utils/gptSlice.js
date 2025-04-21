@@ -11,8 +11,6 @@ const gptSlice = createSlice({
   },
   reducers: {
     toggleGptSearchView: (state, action) => {
-      console.log("toogleGPTview updated ---------- State");
-
       state.showGptSearch = !state.showGptSearch;
     },
     addAiMovieResults: (state, action) => {

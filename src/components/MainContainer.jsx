@@ -4,8 +4,6 @@ import VideoTitle from "./VideoTitle";
 import VideoBackground from "./VideoBackground";
 
 const MainContainer = () => {
-  console.log("main container");
-
   return (
     <div>
       <VideoTitle />

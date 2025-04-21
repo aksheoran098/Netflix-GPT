@@ -5,8 +5,6 @@ import GptMovieSuggestion from "./gptMovieSuggestion";
 import { BACKGROUND_IMAGE } from "../utils/constants";
 
 const GptSearch = () => {
-  console.log("GPT loaded");
-
   const isVisible = useSelector((state) => state.gpt.showGptSearch);
   if (!isVisible) {
     return;
