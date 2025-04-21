@@ -37,3 +37,8 @@ dist-ssr
 *.sw?
 
 src/utils/constants.js
+
+# Firebase Hosting & CLI files
+.firebase/
+firebase.json
+.firebaserc
