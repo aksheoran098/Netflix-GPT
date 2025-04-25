@@ -96,7 +96,7 @@ const Login = () => {
         ></img>
         <form
           onSubmit={(e) => e.preventDefault()}
-          className=" absolute w-4/12 p-12  opacity-84 bg-black text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-sm max-h-full "
+          className=" absolute p-12 sm:p-8 md:p-12  opacity-84 bg-black text-white top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-sm max-h-full w-11/12 sm:w-8/12 md:w-6/12 lg:w-5/12 xl:w-4/12 "
         >
           <h1 className=" font-bold text-2xl pb-4 mb-3 ">
             {isSignInForm ? "Sign In" : "Sign Up"}
@@ -107,7 +107,7 @@ const Login = () => {
               name="name"
               placeholder="Full Name"
               ref={name}
-              className=" border-1 border-gray-300 p-3 mb-4  w-full rounded-sm "
+              className=" border-1 border-gray-300 p-3 sm:p-4 my-2 sm:my-4 w-full rounded-sm "
             />
           )}
           <input
@@ -115,7 +115,7 @@ const Login = () => {
             name="email"
             placeholder="Email Address"
             ref={email}
-            className=" border-1 border-gray-300 bg-black p-3 mb-4  w-full rounded-sm "
+            className=" border-1 border-gray-300 p-3 sm:p-4 my-2 sm:my-4 w-full rounded-sm "
           />
           <input
             type="password"
@@ -128,7 +128,7 @@ const Login = () => {
             <p className="text-red-500 font-bold m-2">{errorMessage}</p>
           )}
           <button
-            className=" mb-4 p-3 rounded-lg bg-red-700 w-full cursor-pointer"
+            className=" mb-4 p-3 rounded-lg bg-red-600 w-full cursor-pointer hover:bg-red-800 transition duration-300 "
             onClick={handleButtonClick}
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
@@ -136,7 +136,7 @@ const Login = () => {
           <p className=" text-gray-400">
             {isSignInForm ? "New to Netflix? " : "Already registered? "}
             <span
-              className="text-white hover:underline cursor-pointer"
+              className="text-white hover:underline cursor-pointer transition duration-300"
               onClick={toggleSignInForm}
             >
               {isSignInForm ? "Sign up now." : "Sign In now."}

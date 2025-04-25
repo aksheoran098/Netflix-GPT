@@ -14,27 +14,32 @@ const VideoTitle = () => {
 
   return (
     <div className=" absolute w-full aspect-video flex ">
-      <div className="h-[100%] w-[50%] pt-[15%]  pl-10 bg-gradient-to-r  from-black  text-white ">
-        <h1 className="font-bold text-5xl">{mainMovie?.title}</h1>
+      <div className="h-[100%] w-[50%] pt-[11%]  md:pt-[13%] lg:pt-[15%]  pl-10 bg-gradient-to-r  from-black  text-white ">
+        <h1 className="font-bold text-sm sm:text-base md:text-xl lg:text-3xl xl:text-5xl">
+          {mainMovie?.title.length <= 40
+            ? mainMovie.title
+            : mainMovie.title.substring(0, 40) + "..."}
+          {console.log(mainMovie?.title.length)}
+        </h1>
         <p className="text-sm text-gray-400">
           {mainMovie?.release_date} | ⭐ {mainMovie?.vote_average.toFixed(1)}
         </p>
         <p
-          className={`w-[70%] py-4  max-h-[45%] overflow-hidden ${
+          className={` text-xs sm:text-sm   xl:text-base   w-[70%] py-4  max-h-[45%]  overflow-hidden ${
             showMore ? "text-gray-200" : "text-gray-500"
           } `}
         >
           {mainMovie?.overview}
         </p>
-        <div>
+        <div className="text-xs  sm:text-sm xl:text-base  mt-2 lg:mt-3 xl:mt-4">
           <button
-            className="rounded-lg cursor-pointer p-2 px-9 font-bold text-black bg-white hover:bg-white/85 "
+            className=" rounded-md  sm:rounded-lg cursor-pointer px-2 mx-1 sm:p-2 sm:px-9 font-bold text-black bg-white hover:bg-white/85 transition duration-200 "
             onClick={() => dispatch(setIsPlaying(true))}
           >
             ▶ Play
           </button>
           <button
-            className=" rounded-lg cursor-pointer mx-4 p-2 px-5  text-gray-300  bg-gray-500/40 "
+            className=" sm:rounded-lg cursor-pointer px-2 mx-1 sm:mx-4 sm:p-2 sm:px-5  text-gray-300  bg-gray-500/40 "
             onClick={() => setShowMore(!showMore)}
           >
             ⓘ {showMore ? "Hide" : "More"} Info

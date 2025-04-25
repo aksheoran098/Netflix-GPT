@@ -18,9 +18,11 @@ const MoreInfo = ({ mainMovie }) => {
   const language = LANGUAGE_LIST[original_language];
 
   return (
-    <div className=" h-[100%]  w-[50%] pt-[15%] bg-gradient-to-l from-black/90 text-white  ">
-      <h2 className="text-xl font-semibold mb-4 text-center">More Info</h2>
-      <ul className="text-sm text-gray-200 space-y-2">
+    <div className=" h-[100%]  w-[50%] pt-[8%] sm:pt-[15%] bg-gradient-to-l from-black/90 text-white  ">
+      <h2 className="text-sm sm:text-base md:text-xl font-semibold mb-4 text-center">
+        More Info
+      </h2>
+      <ul className=" text-xs  sm:text-sm text-gray-200 md:space-y-1 lg:space-y-2">
         <MoreInfoRow label="Original Title" value={original_title} />
         <MoreInfoRow label="Released On" value={release_date} />
         <MoreInfoRow label="Language" value={language} />

@@ -11,6 +11,8 @@ import {
 const GptSearchBar = () => {
   const dispatch = useDispatch();
   const gptSearchText = useSelector((state) => state.gpt.gptSearchText);
+  const isLoading = useSelector((state) => state.gpt.isGptLoading);
+
   const [searchText, setSearchText] = useState(gptSearchText);
 
   const searchMovieTMDB = async (movie) => {
@@ -23,6 +25,7 @@ const GptSearchBar = () => {
 
   const handleGptSearchClick = async (e) => {
     e.preventDefault();
+    console.log("clicked...");
 
     dispatch(setGptSearchText(searchText));
     dispatch(setIsGptLoading(true));
@@ -49,8 +52,12 @@ const GptSearchBar = () => {
           onChange={(e) => setSearchText(e.target.value)}
         />
 
-        <button className="  col-span-3 bg-red-700 m-3 ml-0 rounded-lg  cursor-pointer">
-          Search
+        <button
+          className={` bg-red-600  col-span-3 m-3 ml-0 rounded-lg  cursor-pointer 
+            ${isLoading ? "opacity-50 cursor-not-allowed" : " "}`}
+          disabled={isLoading}
+        >
+          {isLoading ? "Searching..." : "Search"}
         </button>
       </form>
     </div>

@@ -46,7 +46,7 @@ const MovieCard = ({ movie }) => {
   }
   return (
     <div
-      className="  text-white min-w-40  mx-2 mb-4 border-zinc-400 cursor-pointer  overflow-hidden "
+      className="  text-white  min-w-28 sm:min-w-32 md:min-w-36 lg:min-w-40  mx-2 mb-4 border-zinc-400 cursor-pointer  overflow-hidden p-1 lg-p-2  "
       onClick={clickHandler}
       ref={ref}
     >
@@ -54,10 +54,10 @@ const MovieCard = ({ movie }) => {
         <img
           src={IMG_CDN_URL + movie.poster_path}
           alt="Movie Card *Can't load Image* TMDB Free trial Rate Limit Exceeded"
-          className="object-cover w-full h-[85%]  rounded-lg"
+          className="object-cover w-full h-[85%]  rounded-lg  "
         />
       )}
-      <p className="  truncate ">{movie.title}</p>
+      <p className="  truncate lg:m-1    ">{movie.title}</p>
     </div>
   );
 };
