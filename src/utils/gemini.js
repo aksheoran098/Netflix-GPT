@@ -21,7 +21,7 @@ const geminiSearch = async (mainQuery) => {
   try {
     // First try with gemini-1.5-pro
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-pro",
+      model: "gemini-2.5-flash",
       contents: content,
     });
 
@@ -31,7 +31,7 @@ const geminiSearch = async (mainQuery) => {
     if (error?.statusCode === 429 || error?.message?.includes("429")) {
       try {
         const fallbackResponse = await ai.models.generateContent({
-          model: "gemini-2.5-flash",
+          model: "gemini-3-flash",
           contents: content,
         });
         return JSON.parse(fallbackResponse.text);
