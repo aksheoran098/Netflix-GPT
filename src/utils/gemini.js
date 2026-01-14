@@ -31,7 +31,7 @@ const geminiSearch = async (mainQuery) => {
     if (error?.statusCode === 429 || error?.message?.includes("429")) {
       try {
         const fallbackResponse = await ai.models.generateContent({
-          model: "gemini-2.0-flash",
+          model: "gemini-2.5-flash",
           contents: content,
         });
         return JSON.parse(fallbackResponse.text);
