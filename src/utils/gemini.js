@@ -21,7 +21,7 @@ const geminiSearch = async (mainQuery) => {
   try {
     // First try with gemini-1.5-pro
     const response = await ai.models.generateContent({
-      model: "gemini-1.5-pro",
+      model: "gemini-2.5-pro",
       contents: content,
     });
 
