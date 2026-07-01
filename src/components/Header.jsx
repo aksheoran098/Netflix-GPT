@@ -41,7 +41,7 @@ const Header = () => {
   };
   return (
     <div className="flex justify-between absolute w-full h-10 sm:h-20 z-10 px-2 py-2 bg-gradient-to-b from-black top-0 ">
-      <img className="" src={LOGO} alt="logo" />
+
       {user && (
         <div className="flex items-center text-white">
           <button
